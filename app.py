@@ -7,6 +7,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+import sys
+st.write("Python version:", sys.version)
 
 # --- Background styling ---
 st.markdown(
