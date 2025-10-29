@@ -1,18 +1,14 @@
 import streamlit as st
+from PIL import Image
 
+# --- Page config ---
 st.set_page_config(
     page_title="Football Analysis Hub",
     layout="wide",
     initial_sidebar_state="expanded"
 )
-import euro_shot_map
-import web_app
-import main
-import AI_app
-# Set page configuration
 
-from PIL import Image
-# Background GIF & Overlay
+# --- Background styling ---
 st.markdown(
     """
     <style>
@@ -35,44 +31,44 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Main Heading Section
-with st.container():
-    st.title("**⚽ SPECIAL UNIFIED INTERFACE FOR FOOTBALL ANALYSIS(SUI)**")
+# --- Sidebar Navigation ---
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", [
+    "Home",
+    "Player Tracking",
+    "Formations & Tactics",
+    "Euro 2024 Shot Maps",
+    "Heatmaps",
+    "AI Predictions",
+    "About"
+])
+
+# --- Routing Logic ---
+if page == "Home":
+    st.title("**⚽ SPECIAL UNIFIED INTERFACE FOR FOOTBALL ANALYSIS (SUI)**")
     st.subheader("Insights | Tactics | Tracking | Strategy")
     st.write("Welcome to the future of football analytics.")
 
-# Sidebar Navigation
-st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Player Tracking", "Formations & Tactics", "Euro 2024 Shot Maps", "Heatmaps", "AI Predictions", "About"])
-
-# Routing Logic
-if page == "Home":
-    st.markdown("""
-        Welcome to the **Football Analysis Hub** — your all-in-one platform for visualizing and understanding football like never before.
-
-        **Features:**
-        - Real-time **Player Tracking**
-        - Team **Formations and Tactical Analysis**
-        - Tournament-wise **Statistical Insights**
-    """)
     img = Image.open("Gemini_Generated_Image_5pfzxb5pfzxb5pfz.jpg")
-    resized_img = img.resize((1200, 1000))  # (width, height)
-    st.image(resized_img, caption="Football Analysis Hub")
+    st.image(img.resize((1200, 1000)), caption="Football Analysis Hub")
 
 elif page == "Player Tracking":
+    import main
     main.main()
 
 elif page == "Formations & Tactics":
+    import web_app
     web_app.app()
 
 elif page == "Euro 2024 Shot Maps":
-    
+    import euro_shot_map
     euro_shot_map.app()
 
 elif page == "Heatmaps":
     st.write("Heatmaps section coming soon!")  # Placeholder
 
 elif page == "AI Predictions":
+    import AI_app
     AI_app.main()
 
 elif page == "About":
@@ -82,6 +78,5 @@ elif page == "About":
         Using computer vision, machine learning, and data science — we bring the pitch to your screen in a whole new way.
     """)
 
-# Footer
 st.markdown("---")
 st.caption("Powered by Streamlit | Developed with passion for football.")
