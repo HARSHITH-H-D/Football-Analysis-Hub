@@ -1,15 +1,15 @@
-
+"""
+Make sure you have the following installed:
+- streamlit
+- mplsoccer
+- pandas
+"""
 import json
 
 import pandas as pd
 import streamlit as st
 
-import subprocess, sys
-try:
-    from mplsoccer import VerticalPitch
-except ModuleNotFoundError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "mplsoccer==1.5.1"])
-    from mplsoccer import VerticalPitch
+from mplsoccer import VerticalPitch
 
 
 st.title("Euros 2024 Shot Map")
@@ -40,8 +40,6 @@ def plot_shots(df, ax, pitch):
         )
 
 def app():
-    st.title("Euros 2024 Shot Map")
-    st.subheader("Filter to any team/player to see all their shots taken!")
     teams = ['--'] + sorted(df['team'].dropna().unique().tolist())
     team = st.selectbox("Select a team", teams)
 
