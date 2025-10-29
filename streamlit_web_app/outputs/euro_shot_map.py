@@ -9,7 +9,14 @@ import json
 import pandas as pd
 import streamlit as st
 
-from mplsoccer import VerticalPitch
+import sys
+import subprocess
+
+try:
+    from mplsoccer import VerticalPitch
+except ModuleNotFoundError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "mplsoccer"])
+    from mplsoccer import VerticalPitch
 
 
 st.title("Euros 2024 Shot Map")
