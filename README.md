@@ -98,7 +98,7 @@ Football object detection/
 ├── environment.yml                 # Conda environment specification
 └── requirements.txt                # Pip dependencies
 ```
-
+[Watch the Video] (https://drive.google.com/file/d/1uCeN0S8DZUBXREr_46xpKAZZXj-084d9/view?usp=sharing)
 ## 🎯 Model Information
 
 - Player Detection: YOLOv8L model trained for football player detection
